@@ -1,0 +1,14 @@
+import axios from 'axios'
+import BuildClient from '../api/build-client'
+
+const LandingPage = ({currentUser}) => {
+  return currentUser ? <h1>You are signed IN</h1>:<h1>You are NOT signed in</h1>
+}
+
+LandingPage.getInitialProps = async (context) => {
+  const client = BuildClient(context)
+  const {data} = await client.get('/api/users/currentuser')
+  return data
+}
+
+export default LandingPage;
